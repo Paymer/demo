@@ -16,11 +16,7 @@ public class NaceDataExcelExtractor implements INaceDataExtractor {
 
         List<NaceEntity> naceEntityList = new ArrayList<>();
 
-//        File csvFile = null;
         FileReader fr = null;
-//        BufferedReader br = null;
-
-
 
         try {
             File csvFile = new File(fileName);

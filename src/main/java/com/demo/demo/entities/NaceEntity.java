@@ -1,16 +1,17 @@
 package com.demo.demo.entities;
 
 
+//import jakarta.persistence.Entity;
 import jakarta.persistence.Entity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 @Data
 @Entity (name="Nace")
 public class NaceEntity {
 
-    @Id
-    private Long order;
+    @Id private Long order;
 
     private Integer level;
 

@@ -12,13 +12,13 @@ import java.util.Optional;
 @Service
 public class NaceDataService {
 
-    private final NaceRepository repository;
+//    private final NaceRepository repository;
     private final INaceDataExtractor extractor;
 
     private final List<NaceEntity> naceList;
 
-    public NaceDataService (NaceRepository repository, INaceDataExtractor extractor) throws FileNotFoundException {
-        this.repository = repository;
+    public NaceDataService (/*NaceRepository repository, */INaceDataExtractor extractor) throws FileNotFoundException {
+//        this.repository = repository;
         this.extractor = extractor;
 
         naceList =  extractor.getNaceData("src/main/resources/static/gftTest.csv");
