@@ -17,9 +17,15 @@ public class NaceDataExcelExtractorTest {
     INaceDataExtractor dataExtractor = new NaceDataExcelExtractor();
 
     @Test
-    public void getDataTest_OK () throws FileNotFoundException {
+    public void getDataTestOneRowOneEntity () throws FileNotFoundException {
         List<NaceEntity> result = dataExtractor.getNaceData(BASE +"gftTest.csv");
         assertEquals(3, result.size());
+    }
+
+    @Test
+    public void getDataTestWithMultipleLinesForAColumn () throws FileNotFoundException {
+        List<NaceEntity> result = dataExtractor.getNaceData(BASE +"gft.csv");
+        assertEquals(997, result.size());
     }
 
 }
