@@ -30,7 +30,7 @@ public class NaceDataExcelExtractor implements INaceDataExtractor {
 
                 while(data.length<10){
                     line = br.readLine();
-                    if(line.contains("\"")){
+                    if(line.contains("\"") && line.contains(";")){
                         String[] dataAux = line.split(";");
                         data = concatArrays(data, dataAux);
                     }else{
@@ -76,14 +76,6 @@ public class NaceDataExcelExtractor implements INaceDataExtractor {
               return dataResult;
           }
 
-    /**
-     *
-     *
-     *
-     *
-     * @param datos
-     * @return
-     */
     private NaceEntity fullfillEntity(String[] datos) {
         NaceEntity entity = new NaceEntity();
         entity.setOrder(Long.valueOf(datos[0]));

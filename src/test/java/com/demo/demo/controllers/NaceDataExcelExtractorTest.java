@@ -24,8 +24,8 @@ public class NaceDataExcelExtractorTest {
 
     @Test
     public void getDataTestWithMultipleLinesForAColumn () throws FileNotFoundException {
-        List<NaceEntity> result = dataExtractor.getNaceData(BASE +"gft.csv");
-        assertEquals(997, result.size());
+        List<NaceEntity> result = dataExtractor.getNaceData(BASE +"gft_forExercise.csv");
+        assertEquals(996, result.size());
     }
 
 }

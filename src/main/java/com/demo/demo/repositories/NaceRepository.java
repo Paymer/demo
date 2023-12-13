@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NaceRepository extends CrudRepository<NaceEntity, Long> {
-    NaceEntity findById(long id);
+    NaceEntity findById(long orderId);
 }
