@@ -1,24 +1,23 @@
 package com.demo.demo.services;
 
-import com.demo.demo.controllers.INaceDataExtractor;
+import com.demo.demo.extractor.INaceDataExtractor;
 import com.demo.demo.entities.NaceEntity;
 import com.demo.demo.repositories.NaceRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NaceDataService {
-    private final NaceRepository repository;
-    private final INaceDataExtractor extractor;
+    private NaceRepository repository;
+    private INaceDataExtractor extractor;
 
-    public NaceDataService (NaceRepository repository, INaceDataExtractor extractor) throws FileNotFoundException {
+   public NaceDataService (NaceRepository repository, INaceDataExtractor extractor) throws FileNotFoundException {
         this.repository = repository;
         this.extractor = extractor;
 
-        List<NaceEntity> naceList =  extractor.getNaceData("src/main/resources/static/gft_forExercise.csv");
+        List<NaceEntity> naceList =  extractor.getNaceData();
         naceList.stream().forEach(n -> repository.save(n));
     }
 
