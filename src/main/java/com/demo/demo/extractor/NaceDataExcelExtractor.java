@@ -1,6 +1,10 @@
-package com.demo.demo.controllers;
+package com.demo.demo.extractor;
 
+import com.demo.demo.DemoApplication;
 import com.demo.demo.entities.NaceEntity;
+import com.demo.demo.model.DemoException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -10,15 +14,23 @@ import java.util.List;
 @Component
 public class NaceDataExcelExtractor implements INaceDataExtractor {
 
+    @Value("${nace.data.extractor.filename}")
+    private String fileName;
+
     @Override
-    public List<NaceEntity> getNaceData(String fileName) {
+    public List<NaceEntity> getNaceData() throws DemoException{
+        return getNaceData(this.fileName);
+    }
+    @Override
+    public List<NaceEntity> getNaceData(String location) throws DemoException {
 
         List<NaceEntity> naceEntityList = new ArrayList<>();
-        FileReader fr = null;
+
+        InputStreamReader fr;
 
         try {
-            File csvFile = new File(fileName);
-            fr = new FileReader(csvFile);
+            InputStream is = DemoApplication.class.getClassLoader().getResourceAsStream(location);
+            fr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(fr);
 
             boolean isHeadersLine = true;
@@ -48,15 +60,15 @@ public class NaceDataExcelExtractor implements INaceDataExtractor {
             }
             //Exceptions
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            throw new DemoException();
+//        } finally {
+//            try {
+//                if (fr != null) {
+//                    fr.close();
+//                }
+//            } catch (Exception e2) {
+//                e2.printStackTrace();
+//            }
         }
         return naceEntityList;
     }

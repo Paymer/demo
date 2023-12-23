@@ -2,10 +2,10 @@ package com.demo.demo.services;
 
 import com.demo.demo.extractor.INaceDataExtractor;
 import com.demo.demo.entities.NaceEntity;
+import com.demo.demo.model.DemoException;
 import com.demo.demo.repositories.NaceRepository;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 @Service
@@ -13,12 +13,12 @@ public class NaceDataService {
     private NaceRepository repository;
     private INaceDataExtractor extractor;
 
-   public NaceDataService (NaceRepository repository, INaceDataExtractor extractor) throws FileNotFoundException {
+   public NaceDataService (NaceRepository repository, INaceDataExtractor extractor) throws DemoException {
         this.repository = repository;
         this.extractor = extractor;
 
         List<NaceEntity> naceList =  extractor.getNaceData();
-        naceList.stream().forEach(n -> repository.save(n));
+        naceList.forEach(n -> repository.save(n));
     }
 
     public NaceEntity getNaceEntity (Long id){
