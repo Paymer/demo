@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -16,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class NaceControllerTest extends AbstractTest {
 
     @Autowired
@@ -32,14 +34,15 @@ public class NaceControllerTest extends AbstractTest {
     @Test
     public void canRetrieveByIdWhenExists() throws Exception {
         // given
-        NaceEntity expected = TestUtils.createEntity(996L, 4, "99", "99",
-                "Activities of extraterritorial organisations and bodies", "null- activities of international organisations such as the United Nations and the specialised agencies of the United Nations system, regional bodies etc., the International Monetary Fund, the World Bank, the World Customs Organisation, the Organisation f",
-                "null- activities of diplomatic and consular missions when being determined by the country of their location rather than by the country they represent\"",
+        NaceEntity expected = TestUtils.createEntity(1L, 4, "99", "99",
+                "Activities of extraterritorial ...",
+                "null- activities of international organisations such as the United Nations and the specialised agencies of the United Nations system, regional bodies etc., the International Monetary Fund, the World Bank, the World Customs Organisation, the Organisation f",
+                "null- activities of diplomatic and consular ...",
                 "", "", "9900");
 
         // when
         MockHttpServletResponse response = mvc.perform(
-                        MockMvcRequestBuilders.get("/nace/996")
+                        MockMvcRequestBuilders.get("/nace/1")
                                 .accept(MediaType.APPLICATION_JSON))
                         .andReturn().getResponse();
 
@@ -113,7 +116,7 @@ public class NaceControllerTest extends AbstractTest {
     @Test
     public void addWhenDoesNotExists() throws Exception {
         // given
-        NaceEntity expected = TestUtils.createEntity(2L, 4, "99", "99",
+        NaceEntity expected = TestUtils.createEntity(997L, 4, "99", "99",
                 "Description modified",
                 "Item includes modified",
                 "other modifications",
@@ -129,8 +132,7 @@ public class NaceControllerTest extends AbstractTest {
 
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).contains(mapToJson(expected).substring(0,9));
-        assertThat(response.getContentAsString()).contains(mapToJson(expected).substring(13));
+        assertThat(response.getContentAsString()).isEqualTo(mapToJson(expected));
     }
 
 
