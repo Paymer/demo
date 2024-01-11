@@ -1,8 +1,6 @@
 package com.demo.demo.extractor;
 
 import com.demo.demo.entities.NaceEntity;
-import com.demo.demo.extractor.INaceDataExtractor;
-import com.demo.demo.extractor.NaceDataExcelExtractor;
 import com.demo.demo.model.DemoException;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class NaceDataExcelExtractorTest {
 
-    @Autowired
+
     INaceDataExtractor dataExtractor = new NaceDataExcelExtractor();
 
     @Test

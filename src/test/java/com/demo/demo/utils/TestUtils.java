@@ -18,4 +18,23 @@ public class TestUtils {
         entity.setLevel(1);
         return entity;
     }
+
+    public static NaceEntity createEntity(Long i, int level, String code, String parent,
+                                          String descriprion, String itemIncl, String alsoIncl,
+                                          String itemExcl,
+                                          String rulings, String referenceIsic){
+
+        NaceEntity entity =new NaceEntity();
+        entity.setOrder(i);
+        entity.setRulings(rulings);
+        entity.setReferenceIsic(referenceIsic);
+        entity.setAlsoIncludes(alsoIncl);
+        entity.setItemExcludes(itemExcl);
+        entity.setDescription(descriprion);
+        entity.setParent(parent);
+        entity.setCode(code);
+        entity.setItemIncludes(itemIncl);
+        entity.setLevel(level);
+        return entity;
+    }
 }

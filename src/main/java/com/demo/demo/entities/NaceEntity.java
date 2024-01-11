@@ -2,12 +2,10 @@ package com.demo.demo.entities;
 
 
 //import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 //import org.springframework.data.annotation.Id;
-import jakarta.persistence.Id;
+
 
 @Data
 @Entity
@@ -16,6 +14,7 @@ public class NaceEntity {
 
     @Id
     @Column(name="orderId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order;
 
     @Column(name="level")
