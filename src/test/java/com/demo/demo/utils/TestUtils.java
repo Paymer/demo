@@ -12,8 +12,8 @@ public class TestUtils {
         entity.setAlsoIncludes("alsoIncludes"+i);
         entity.setItemExcludes("itemExcludes"+i);
         entity.setDescription("description"+i);
-        entity.setParent("parent"+i);
-        entity.setCode("code"+i);
+        entity.setParent("P"+i);
+        entity.setCode("A"+i);
         entity.setItemIncludes("itemIncludes"+i);
         entity.setLevel(1);
         return entity;

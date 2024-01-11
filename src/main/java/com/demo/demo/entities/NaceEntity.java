@@ -13,11 +13,11 @@ import lombok.Data;
 public class NaceEntity {
 
     @Id
-    @Column(name="orderId")
+    @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order;
 
-    @Column(name="level")
+    @Column(name="lvl")
     private Integer level;
 
     @Column(name="code")
@@ -29,18 +29,18 @@ public class NaceEntity {
     @Column(name="description")
     private String description;
 
-    @Column(name="itemIncludes")
+    @Column(name="item_includes")
     private String itemIncludes;
 
-    @Column(name="alsoIncludes")
+    @Column(name="also_includes")
     private String alsoIncludes;
 
     @Column(name="rulings")
     private String rulings;
 
-    @Column(name="itemExcludes")
+    @Column(name="item_excludes")
     private String itemExcludes;
 
-    @Column(name="referenceIsic")
+    @Column(name="reference_isic")
     private String referenceIsic;
 }
